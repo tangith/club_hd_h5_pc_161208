@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>商品兑换兑换列表</title>
+	<style>
+		*{padding: 0;margin: 0;}
+		body{background-color: #000000;}
+		img{display: block;}
+		ul{list-style: none;}
+		#bg{
+			width: 1280px;
+			height: 760px;
+			position: absolute;
+			background: url(images/shoping_list.jpg) no-repeat no-repeat;
+		}
+		#goods{
+			position: absolute;
+			left: 365px;
+			top: 155px;
+			width: 840px;
+			height: 445px;
+		}
+		#goods li{
+			/*position: absolute;*/
+			float: left;
+			margin: 0 18px 60px 0;
+
+		}
+		#goods li img{
+			width: 257px;
+			height: 188px;
+		}
+		#page{
+			font-style: normal;
+			position: absolute;
+			color: #ffffff;
+			font-size: 30px;
+			top: 622px;
+			left: 735px;
+		}
+	</style>
+</head>
+<body>
+	<div id="bg">
+	<!-- 兑换记录 -->
+		<div style="position:absolute;left:51px;top:509px;">
+			<a id="" href="user_order_list.html"><img src="../images/spic/bg.gif" width="240" height="70" border="0"></a>
+		</div>
+	<!-- 兑换说明 -->
+		<div style="position:absolute;left:50px;top:611px;">
+			<a id="" href="shuoming.html"><img src="../images/spic/bg.gif" width="240" height="70" border="0"></a>
+		</div>
+		<!-- 上一页 -->
+		<div style="position:absolute;left:457px;top:613px;">
+			<a href="#" id="pre_page"><img src="../images/spic/bg.gif" width="145" height="50" border="0"></a>
+		</div>
+		<!-- 下一页 -->
+		<div style="position:absolute;left:933px;top:613px;">
+			<a href="#" id="next_page"><img src="../images/spic/bg.gif" width="145" height="50" border="0"></a>
+		</div>
+		<ul id="goods">
+			<li><a href="order_confirm.html"><img src="images/goods_img/goods01.jpg" alt=""></a></li>
+			<li><a href="order_confirm.html"><img src="images/goods_img/goods02.jpg" alt=""></a></li>
+			<li><a href="order_confirm.html"><img src="images/goods_img/goods03.jpg" alt=""></a></li>
+			<li><a href="order_confirm.html"><img src="images/goods_img/goods04.jpg" alt=""></a></li>
+			<li><a href="order_confirm.html"><img src="images/goods_img/goods05.jpg" alt=""></a></li>
+			<li><a href="order_confirm.html"><img src="images/goods_img/goods06.jpg" alt=""></a></li>
+			<li><a href="order_confirm.html"><img src="images/goods_img/goods07.jpg" alt=""></a></li>
+			<li><a href="order_confirm.html"><img src="images/goods_img/goods08.jpg" alt=""></a></li>
+			<li><a href="order_confirm.html"><img src="images/goods_img/goods09.jpg" alt=""></a></li>
+			<li><a href="order_confirm.html"><img src="images/goods_img/goods10.jpg" alt=""></a></li>
+			<li><a href="order_confirm.html"><img src="images/goods_img/goods11.jpg" alt=""></a></li>
+			<li><a href="order_confirm.html"><img src="images/goods_img/goods12.jpg" alt=""></a></li>
+			<li><a href="order_confirm.html"><img src="images/goods_img/goods13.jpg" alt=""></a></li>
+			<li><a href="order_confirm.html"><img src="images/goods_img/goods14.jpg" alt=""></a></li>
+			<li><a href="order_confirm.html"><img src="images/goods_img/goods15.jpg" alt=""></a></li>
+			<li><a href="order_confirm.html"><img src="images/goods_img/goods16.jpg" alt=""></a></li>
+		</ul>
+		<i id="page"><span></span> / <span></span></i>
+
+
+<!-- <div style="position:absolute;left:627px;top:250px;">
+		<a id="Foot_button_2" href="javascript:vis_to_rewrite('i_order_list.php?a=-70&amp;b=1057470020', '', 1)"><img src="../images/spic/bg.gif" width="227" height="62" border="0"></a>
+</div> -->
+
+	</div>
+<script src="../js/head_btn.js"></script>
+<script>
+	window.onload = function(){
+	// 商品兑换
+		var goods_lis = document.getElementById('goods').children;// 所有li元素的集合
+		var page = document.getElementById('page');
+		var pre_page = document.getElementById('pre_page');
+		var next_page = document.getElementById('next_page');
+		var page_current = 1;// 当前的页数
+		var page_num = 6;// 每页显示的数目
+		var page_totle = Math.ceil(goods_lis.length / page_num);// 总页数
+		page.children[0].innerHTML = page_current;
+		page.children[1].innerHTML = page_totle;
+		showPage(1);
+		function showPage(p){
+			page_current = p;
+			for (var i = 0; i < goods_lis.length; i++) {
+				goods_lis[i].style.display = 'none';
+			};
+			for (var i = (p-1)*page_num; i < p*page_num; i++) {
+				if(goods_lis[i]){
+					goods_lis[i].style.display = 'block';
+				}
+			}
+		};
+		next_page.addEventListener('click',function(){
+			if (page_current < page_totle) {
+				page_current+=1;
+				showPage(page_current);
+				page.children[0].innerHTML = page_current;
+			}
+		});
+		pre_page.addEventListener('click',function(){
+			if (page_current > 1) {
+				page_current-=1;
+				showPage(page_current);
+				page.children[0].innerHTML = page_current;
+			}
+		});
+	}
+</script>
+</body>
+</html>

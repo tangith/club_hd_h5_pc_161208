@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>商品兑换</title>
+	<style>
+		*{padding: 0;margin: 0;}
+		body{background-color: #000000;}
+		img{display: block;}
+		ul{list-style: none;}
+		#bg{
+			width: 1280px;
+			height: 760px;
+			position: absolute;
+			background: url(images/order_confirm.jpg) no-repeat no-repeat;
+		}
+		#goods_name,#goods_price{
+			position: absolute;
+			font-size: 45px;
+			color: #ff00ff;
+		}
+		#goods_name{
+			left: 750px;
+			top: 210px;
+		}
+		#goods_price{
+			left: 782px;
+			top: 330px;
+		}
+		#msg{
+			position: absolute;
+			font-size: 34px;
+			left: 500px;
+			top: 632px;
+			color: orangered;
+			font-weight: bolder;
+		}
+	</style>
+</head>
+<body>
+	<div id="bg">
+	<!-- 确认兑换 -->
+		<div style="position:absolute;left:565px;top:552px;">
+			<a id="ok_to_buy" href="javascript:vis_to_rewrite('order.php?jp_id=33&amp;jp_type=3&amp;a=&amp;b=1798272890', '', 1)"><img src="../images/spic/bg.gif" width="192" height="61" border="0"></a>
+		</div>
+	<!-- 返回商城 -->
+		<div style="position:absolute;left:782px;top:552px;">
+			<a id="Foot_button_2" href="javascript:vis_to_rewrite('shoping_list.php?jp_type=3&amp;a=', '1', 1)"><img src="../images/spic/bg.gif" width="192" height="61" border="0"></a>
+		</div>
+		<span id="goods_name"></span>
+		<span id="goods_price"></span>
+		<span id="msg"></span>
+	</div>
+<script src="../js/head_btn.js"></script>
+<script>
+	var goods_name = document.getElementById('goods_name');
+	var goods_price = document.getElementById('goods_price');
+	var ok_to_buy = document.getElementById('ok_to_buy');
+	var msg = document.getElementById('msg');// 用来显示i豆不足等兑换不成功的信息
+	goods_name.innerHTML = '动漫剧场';
+	goods_price.innerHTML = '100000';
+	ok_to_buy.addEventListener('click',function(){
+		if (true) {
+			window.location.href='order_ok.html';
+		}else{
+			if (true) {
+				msg.innerHTML = '兑换失败，你的i豆数量不足！';
+			}else if (true) {
+				msg.innerHTML = '兑换失败，今天已经兑完了！';
+			}
+			
+		}
+	});
+</script>
+</body>
+</html>

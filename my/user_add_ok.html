@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>注册成功</title>
+	<style>
+		*{padding: 0;margin: 0;}
+		body{background-color: #000000;}
+		img{display: block;}
+		ul{list-style: none;}
+		#bg{
+			width: 1280px;
+			height: 760px;
+			position: absolute;
+			background: url(images/user_add_ok.jpg) no-repeat no-repeat;
+		}
+		#itv,#phone{
+			position: absolute;
+			left: 656px;
+			font-size: 36px;
+			color: #FF00FF;
+		}
+		#itv{top: 312px;}
+		#phone{top: 370px;}
+	</style>
+</head>
+<body>
+	<div id="bg">
+	<!-- iTV -->
+		<span id="itv"></span>
+	<!-- 手机号码 -->
+		<span id="phone"></span>
+	</div>
+<script src="../js/head_btn.js"></script>
+<script>
+	var itv = document.getElementById('itv');
+	var phone = document.getElementById('phone');
+	itv.innerHTML = 'bestv';
+	phone.innerHTML = '18062573599';
+</script>
+</body>
+</html>

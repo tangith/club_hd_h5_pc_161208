@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>用户俱乐部hd</title>
+	<style>
+		*{padding: 0;margin: 0;}
+		body{background-color: #000000;}
+		img{display: block;}
+		ul{list-style: none;}
+		#bg{
+			width: 1280px;
+			height: 760px;
+			position: absolute;
+			background: url(images/index.jpg) no-repeat no-repeat;
+		}
+	/*轮播图begin*/
+		#pic_list{
+			position: absolute;
+			left: 352px;
+			top: 150px;
+		}
+		#pic_list ul li{
+			position: absolute;
+		}
+		#pic_list ul img{
+			width: 160px;
+			height: 90px;
+		}
+		#active_box{
+			position: absolute;
+			top: 0px;
+			left: 180px;
+			width: 12px;
+			height: 90px;
+			background: url(images/spic/portal1_arrow.png) center;
+		}
+		#large_pic{
+			position: absolute;
+			width: 620px;
+			height: 390px;
+			left: 212px;
+			top: 0px;
+			background-image: url(pic/01.jpg);
+			background-size: 100% 100%;
+			background-repeat: no-repeat;
+		}
+		#pic_list .mask{
+			width: 160px;
+			height: 90px;
+			position: absolute;
+			background: rgba(0,0,0,.5);
+			z-index: 0;
+		}
+		#to_login{
+			position: absolute;
+			display: block;
+			width: 210px;
+			height: 30px;
+			left: 875px;
+			top: 85px;
+			display: none;
+		}
+	/*轮播图end*/
+	</style>
+</head>
+<body>
+	<div id="bg">
+		<!-- 我的i豆 -->
+		<span id="user_idou" style="position:absolute;left:980px;top:83px;color:black;font-size:25px;color:#FFFF00;"></span>
+		<!-- 会员账号 -->
+		<span id="user_id" style="position:absolute;left:974px;top:57px;font-size:25px;color:#FF00FF;"></span>
+		<!-- 签到 -->
+		<div style="position:absolute;left:1093px;top:55px;">
+			<a id="button_1" href="qiandao.html"><img src="images/spic/bg.gif" width="100" height="30" border="0"></a>
+		</div>
+		<!-- 观影 -->
+		<div style="position:absolute;left:1093px;top:82px;">
+			<a id="button_2" href="javascript:void(0)"><img src="images/spic/bg.gif" width="100" height="30" border="0"></a>
+		</div>
+		<!-- 限时推荐 -->
+		<div style="position:absolute;left:55px;top:534px">
+			<a id="button_3" href="#" onclick="vas_to_epg('/vasroot/apps/APP_HB_CLUB/family/index_url.php?a=-100&amp;b=1763499264', '7', '')"><img src="pic/index_hh.jpg" width="250" height="192" border="0"></a>
+		</div>
+		<!-- 字幕滚动组件 -->
+		<div style="position:absolute;left:550px;top:580px;width:650px;">
+  			<marquee scrollamount="5" style="font-size:22px;color:white;">现在注册还可以抢购200元途牛券</marquee>
+		</div>
+		<!-- 了解详情 -->
+		<div style="position:absolute;left:862px;top:692px;">
+			<a id="button_4" href="huodong.html"><img src="images/spic/bg.gif" width="100" height="30" border="0"></a>
+		</div>
+		<!-- 注册 -->
+		<a id="to_login" href="my/user_add.html"></a>
+		<!-- 轮播图begin -->
+		<div id="pic_list">
+			<ul>
+				<li class="active">
+					<div class="mask"></div>
+					<a href="javascript:void(0)"><img src="pic/01.jpg" alt=""></a>
+				</li>
+				<li>
+					<div class="mask"></div>
+					<a href="javascript:void(0)"><img src="pic/02.jpg" alt=""></a>
+				</li>
+				<li>
+					<div class="mask"></div>
+					<a href="javascript:void(0)"><img src="pic/03.jpg" alt=""></a>
+				</li>
+				<li>
+					<div class="mask"></div>
+					<a href="javascript:void(0)"><img src="pic/04.jpg" alt=""></a>
+				</li>
+			</ul>
+			<div id="active_box"></div>
+			<div id="large_pic"></div>
+		</div>
+	<!-- 轮播图end -->
+	<!-- 未登录测试 -->
+		<a id="user_test" style="position: absolute;left: 640px;top: 77px;color: white;">注册状态切换</a>
+	</div>
+<script src="js/head_btn.js"></script>
+<script>
+// 会员账号
+	var user_id = document.getElementById('user_id');
+	user_id.innerHTML = '10152';
+// 我的i豆
+	var user_idou = document.getElementById('user_idou');
+	user_idou.innerHTML = '12560';
+// 轮播图
+	var pic_list = document.getElementById('pic_list');
+	var lis = pic_list.children[0].children;
+	var large_pic = pic_list.children[2];
+	var active_box = pic_list.children[1];
+	var timer = null;// 定时器
+	for (var i = 0; i < lis.length; i++) {
+		lis[i].style.top = i*115 + 'px';
+	};
+	timer = setInterval(change_pic,1000);
+	var num = 0;
+	function change_pic(){
+		// 小三角
+		active_box.style.top =  num * 115 + 'px';
+		// 大图
+		large_pic.style.backgroundImage = "url("+lis[num].children[1].children[0].getAttribute('src');+")";
+		// console.log(num);
+		for (var i = 0; i < lis.length; i++) {
+			lis[i].index = i;
+			// 小图蒙层
+			lis[i].children[0].style.zIndex = 0;
+			if (num == i) {
+				lis[i].children[0].style.zIndex = -1;
+			}
+			// 小图点击
+			lis[i].addEventListener('click',function(){
+				num = this.index;
+				clearInterval(timer);
+				// 大图
+				large_pic.style.backgroundImage = "url("+lis[num].children[1].children[0].getAttribute('src');+")";
+				// 小三角
+				active_box.style.top =  num * 115 + 'px';
+				// 小图蒙层
+				for (var i = 0; i < lis.length; i++) {
+					lis[i].children[0].style.zIndex = 0;
+					if (num == this.index) {
+						lis[this.index].children[0].style.zIndex = -1;
+					}
+				}
+				timer = setInterval(change_pic,1000);
+					
+			})
+		}
+		num++;
+		num == 4 ? num = 0 : num;
+	};
+// 未注册
+	var no_user = false;
+	// if (user_idou.innerHTML == '') {
+	 	// bg.style.backgroundImage = 'url(images/index_no_user.jpg)';
+	 	// user_idou.style.display = 'none';
+	 	// to_login.style.display = 'block';
+	// }else{
+	// 	bg.style.backgroundImage = 'url(images/index.jpg)';
+	// 	user_idou.style.display = 'block';
+	// 	to_login.style.display = 'none';
+	// }
+	
+
+
+// 注册状态切换测试
+	var user_test = document.getElementById('user_test');
+	user_test.addEventListener('click',function(){
+		if (!no_user) {
+			console.log(no_user)
+			no_user = true;
+			bg.style.backgroundImage = 'url(images/index_no_user.jpg)';
+			user_idou.style.display = 'none';
+			to_login.style.display = 'block';
+		}else{
+			console.log(no_user)
+			no_user = false;
+		 	bg.style.backgroundImage = 'url(images/index.jpg)';
+		 	user_idou.style.display = 'block';
+		 	to_login.style.display = 'none';
+		}
+	});
+</script>
+</body>
+</html>

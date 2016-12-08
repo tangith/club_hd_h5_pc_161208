@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>我的i豆</title>
+	<style>
+		*{padding: 0;margin: 0;}
+		body{background-color: #000000;}
+		img{display: block;}
+		ul{list-style: none;}
+		#bg{
+			width: 1280px;
+			height: 760px;
+			position: absolute;
+			background: url(images/my.jpg) no-repeat no-repeat;
+		}
+	</style>
+</head>
+<body>
+	<div id="bg">
+	<!-- 兑换记录 -->
+		<div style="position:absolute;left:627px;top:250px;">
+			<a id="Foot_button_2" href="i_order_list.html"><img src="../images/spic/bg.gif" width="227" height="62" border="0"></a>
+		</div>
+	<!-- 我的i豆 -->
+		<span id="user_idou" style="position:absolute;left:785px;top:173px;font-size:40px;color:#FF00FF;"></span>
+	<!-- iTV -->
+		<span id="itv" style="position:absolute;left:560px;top:445px;font-size:35px;color:#FF00FF;"></span>
+	<!-- 手机号码 -->
+		<span id="phone" style="position:absolute;left:540px;top:528px;font-size:35px;color:#FF00FF;"></span>
+	<!-- 修改手机号 -->
+		<div style="position:absolute;left:748px;top:532px;">
+			<a id="Foot_button_1" href="user_update.html"><img src="../images/spic/bg.gif" width="65" height="35" border="0"></a>
+		</div>
+	</div>
+<script src="../js/head_btn.js"></script>
+<script>
+	window.onload = function(){
+		// 我的i豆
+		var user_idou = document.getElementById('user_idou');
+		user_idou.innerHTML = '12560';
+		// iTV账号
+		var itv = document.getElementById('itv');
+		itv.innerHTML = 'bestv';
+		// 手机号码
+		var phone = document.getElementById('phone');
+		phone.innerHTML = '18986331280';
+	}
+</script>
+</body>
+</html>
